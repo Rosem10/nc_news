@@ -29,9 +29,9 @@ jobs:
         run: npm install
       - name: setup postgresql
         uses: harmon758/postgresql-action@v1
-          with:
-            postgresql db: test_db
-            postgresql user: ms_test_user
-            postgresql password: p4ssw0rd
+        with:
+          postgresql db: test_db
+          postgresql user: ms_test_user
+          postgresql password: p4ssw0rd
       - name: run app tests
         run: PGDATABASE=test_db PGUSER=ms_test_user PGPASSWORD=p4ssw0rd npm run test-app
