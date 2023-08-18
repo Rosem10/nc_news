@@ -35,3 +35,14 @@ jobs:
           postgresql password: p4ssw0rd
       - name: run app tests
         run: PGDATABASE=test_db PGUSER=ms_test_user PGPASSWORD=p4ssw0rd npm run test-app
+
+    test-app-live-db:
+      needs: test-app
+      runs-on: ubuntu-latest
+      steps:
+        - name: checkout and clone repo
+          uses: actions/checkout@v3
+        - name: install dependencies
+          run: npm install
+        - name: run live db ap tests
+          run: NODE_ENV production DATABASE_URL=${{secrets.DATABASE_URL}} npm run test-utils 
